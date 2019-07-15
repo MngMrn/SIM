@@ -21,12 +21,21 @@ public class Sim {
 		this.balance=balance;
 	}
 	
+	/**
+	 * Il metodo startCall inizia la chiamata
+	 * @param number
+	 * @return
+	 */
 	public String startCall(String number) {
 		call.setNumber(number);
 		call.setStartTime(System.currentTimeMillis());
 		return number;
 	}
 	
+	/**
+	 * Il metodo endCall termina la chiamata
+	 * @throws IOException
+	 */
 	public void endCall() throws IOException {
 		call.setEndTime(System.currentTimeMillis());
 		call.setTime(call.getEndTime()-call.getStartTime());
@@ -37,6 +46,11 @@ public class Sim {
 		writer.close();
 	}
 	
+	/**
+	 * Il metodo allCallsForNumber restituisce il numero di tutte le chiamate effettutate
+	 * @param number
+	 * @return
+	 */
 	public int allCallsForNumber(String number) {
 		int allCalls = 0;
 		for(Call call : calls) {
@@ -47,6 +61,9 @@ public class Sim {
 		return allCalls;
 	}
 	
+	/**
+	 * Il metodo print info stampa in output il numero della sim il saldo e tutte le chiamate effettuate
+	 */
 	public void printInfo() {
 		System.out.println("Number = "+this.number);
 		System.out.println("Balance = "+this.balance);
@@ -57,6 +74,10 @@ public class Sim {
 		}
 	}
 	
+	/**
+	 * Carica tutte le chiamate presenti sul file nel programma
+	 * @throws IOException
+	 */
 	public void uploadFileCalls() throws IOException {
 		String line = null;
 		BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
